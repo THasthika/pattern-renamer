@@ -65,15 +65,19 @@ function getNewFilePath(original, name) {
 
 function renameFile(original, name, cb) {
 	(function(file, name) {
-		fs.rename(file, name, cb);
+		fs.rename(file, name, function() {
+			cb(file, name);
+		});
 	})(original, name);
 }
 
 function copyFile(original, name, cb) {
 	(function(file, name) {
 		var wstream = fs.createWriteStream(name);
-		var rstream = fs.createReadStream(original);
-		rstream.pipe(wstream);
+		var rstream = fs.createReadStream(original).pipe(wstream);
+		rstream.on('finish', function() {
+			cb(file, name);
+		});
 	})(original, name);
 }
 
@@ -155,12 +159,22 @@ function patternRename(vars) {
 	var robj = patternToRegexObject(vars.pattern);
 	var files = getFiles(vars.folder);
 
+	var cb = function(pre) {
+		return function(file, name) {
+			console.log((pre + path.basename(file) + " --> " + path.basename(name)).yellow);
+		}
+	};
+
+	var rcb = cb("renamed: ");
+	var ccb = cb("copied: ");
+
 	while(files.length > 0) {
 		var file = files.shift();
 
 		var basename = path.basename(file);
 
 		var m = robj.regex.exec(basename);
+
 		if(m == null)
 			continue;
 
@@ -174,9 +188,9 @@ function patternRename(vars) {
 		name = getNewFilePath(file, name);
 
 		if(vars.copy)
-			copyFile(file, name);
+			copyFile(file, name, ccb);
 		else
-			renameFile(file, name);
+			renameFile(file, name, rcb);
 	}
 }
 
