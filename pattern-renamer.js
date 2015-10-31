@@ -81,6 +81,21 @@ function copyFile(original, name, cb) {
 	})(original, name);
 }
 
+function serialCopy(fileList, cb) {
+	var file, name;
+	for(file in fileList) {
+		name = fileList[file];
+		break;
+	}
+	delete fileList[file];
+	if(!file || !name)
+		return;
+	copyFile(file, name, function(file, name) {
+		cb(file, name);
+		serialCopy(fileList, cb);
+	});
+}
+
 function isType(type) {
 	return (type in TYPES);
 }
@@ -159,39 +174,31 @@ function patternRename(vars) {
 	var robj = patternToRegexObject(vars.pattern);
 	var files = getFiles(vars.folder);
 
-	var cb = function(pre) {
-		return function(file, name) {
-			console.log((pre + path.basename(file) + " --> " + path.basename(name)).yellow);
-		}
+	var cb =  function(file, name) {
+		console.log((((vars.copy) ? "copied: " : "moved: ") + path.basename(file) + " --> " + path.basename(name)).yellow);
 	};
 
-	var rcb = cb("renamed: ");
-	var ccb = cb("copied: ");
+	var cpfiles = {};
 
 	while(files.length > 0) {
 		var file = files.shift();
-
 		var basename = path.basename(file);
-
 		var m = robj.regex.exec(basename);
-
 		if(m == null)
 			continue;
-
 		var i = 1;
 		for(var k in robj.params) {
 			robj.params[k] = m[i];
 			i++;
 		}
-
 		var name = getOutputName(vars.output, robj.params);
 		name = getNewFilePath(file, name);
-
 		if(vars.copy)
-			copyFile(file, name, ccb);
+			cpfiles[file] = name;
 		else
-			renameFile(file, name, rcb);
+			renameFile(file, name, cb);
 	}
+	serialCopy(cpfiles, cb);
 }
 
 function main() {
