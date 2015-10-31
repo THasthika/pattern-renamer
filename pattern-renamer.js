@@ -187,7 +187,7 @@ function main() {
 		vars.copy = false;
 		vars.pattern = null;
 		vars.output = null;
-		vars.folder = args.shift();
+		vars.folder = null;
 	})
 	.add(["--help", "-h"], function() {
 		console.log(HELP);
@@ -205,6 +205,11 @@ function main() {
 		if(output == undefined)
 			throw new Error("The output must not be empty");
 		this.vars.output = output;
+	})
+	.add(function(folder) {
+		if(folder == undefined)
+			throw new Error("The folder must not be empty");
+		this.vars.folder = folder;
 	});
 
 	args.exec(function(vars) {
