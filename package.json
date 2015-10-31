@@ -1,0 +1,23 @@
+{
+  "name": "pattern-renamer",
+  "version": "0.0.1",
+  "description": "A file renaming program which uses patterns to find the new name",
+  "main": "pattern-renamer.js",
+  "preferGlobal": true,
+  "scripts": {
+    "test": "node pattern-renamer.js"
+  },
+  "author": "Tharindu Hasthika",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.1.2"
+  },
+  "repository" : {
+    "type": "git",
+    "url": "https://github.com/tharindu96/pattern-renamer.git"
+  },
+  "keywords": ["file", "renamer", "pattern", "regular expression", "regex"],
+  "bin": {
+    "pattern-renamer": "pattern-renamer.js"
+  }
+}
