@@ -10,13 +10,20 @@
   "author": "Tharindu Hasthika",
   "license": "ISC",
   "dependencies": {
+    "cli-argumentor": "0.0.5",
     "colors": "^1.1.2"
   },
-  "repository" : {
+  "repository": {
     "type": "git",
     "url": "https://github.com/tharindu96/pattern-renamer.git"
   },
-  "keywords": ["file", "renamer", "pattern", "regular expression", "regex"],
+  "keywords": [
+    "file",
+    "renamer",
+    "pattern",
+    "regular expression",
+    "regex"
+  ],
   "bin": {
     "pattern-renamer": "pattern-renamer.js"
   }

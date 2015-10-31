@@ -12,14 +12,13 @@
 	-p or --pattern [pattern] #The pattern which is used to find the numbers
 	-o or --output [output] #The output pattern of the new file
 	-c or --copy #Instead of renaming copy the files
-	-i or --increment #Just incremental renaming instead of patterns
 	```
 
 - ##Pattern variable:
 	   pattern variables are used in the -p and -o options, they are fundamentally regular expression abstractions. These can be combined with regular strings and other patterns to create complex patterns   
 	   basically the syntax of the patterns are as follows,   
-	1. (:[identifier]:[type]:[length])
-	2. (:[identifier]:[type]:[min]:[max])
+	1. [:identifier:type:length]
+	2. [:identifier:type:min:max]
 
 	+ The above pattern keywords are described below
 	  * **identifier** (optional): This is the name which, is used in the -o parameter to give the output pattern. If the pattern has a identifier
@@ -30,5 +29,5 @@
 
 - ##Examples
 	```
-	pattern-renamer ./ -p (:any)S(:s:num:2)E(:e:num:2)(:any) -o S(:s)E(:e) #This will match a file like "showS02E20.mp4" to "S02E20.mp4"
+	pattern-renamer ./ -p [:any]S[:s:num:2]E[:e:num:2][:any] -o S[:s]E[:e] #This will match a file like "showS02E20.mp4" to "S02E20.mp4"
 	```
