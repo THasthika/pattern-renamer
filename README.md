@@ -1,5 +1,6 @@
-#pattern-renamer:
-   A file renaming program which uses patterns to find the new name   
+#pattern-renamer
+
+##A file renaming program which uses patterns to find the new name
 
 - ##usage:
 	```
