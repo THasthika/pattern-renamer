@@ -14,7 +14,9 @@
 	```
 
 - ##patterns:
-	⋅⋅⋅patterns are used in the -p and -o options, they are fundamentally regular expression abstractions,⋅⋅⋅
-	⋅⋅⋅basically the syntax of the patterns are as follows,⋅⋅⋅
+	patterns are used in the -p and -o options, they are fundamentally regular expression abstractions,
+	
+	basically the syntax of the patterns are as follows,
+	
 	1. ([identifier]:[type]:[length])
 	2. ([identifier]:[type]:[min]:[max])
