@@ -1,6 +1,6 @@
 {
   "name": "pattern-renamer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A file renaming program which uses patterns to find the new name",
   "main": "pattern-renamer.js",
   "preferGlobal": true,
