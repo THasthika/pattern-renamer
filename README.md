@@ -18,5 +18,5 @@
 	   basically the syntax of the patterns are as follows,   
 	1. ([identifier]:[type]:[length])
 	2. ([identifier]:[type]:[min]:[max])
-	
-	  *identifier (optional): This is the name which, is used in the -o parameter to give the output pattern
+
+	+ identifier (optional): This is the name which, is used in the -o parameter to give the output pattern
