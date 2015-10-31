@@ -19,4 +19,5 @@
 	1. ([identifier]:[type]:[length])
 	2. ([identifier]:[type]:[min]:[max])
 
-	+ identifier (optional): This is the name which, is used in the -o parameter to give the output pattern
+	+ The above pattern keywords are described below
+	  * identifier (optional): This is the name which, is used in the -o parameter to give the output pattern
